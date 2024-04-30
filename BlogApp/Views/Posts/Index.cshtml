@@ -1,10 +1,10 @@
-@model List<Post>
+@model PostsViewModel
 
     <div class="row">
         <div class="col-lg-8">
             <div class="bg-white p-4">
                 <h1 class="h4 mb-4">Popular Posts</h1>
-                @foreach(var post in Model)
+                @foreach(var post in Model.Posts)
                 {
                     <div class="card bg-transparent border-0 mb-3">
                         <div class="row">
@@ -13,10 +13,14 @@
                             </div>
                             <div class="col-8">
                                 <h5>
-                                    <a href="#" class="btn-link fw-bold">@post.Title</a>
+                                    <a href="/posts/details/@post.Url" class="btn-link fw-bold">@post.Title</a>
                                 </h5>
-                                <p>@post.Content</p>
-                                <a href="#" class="badge bg-danger bg-opacity-10 text-danger mb-2 fw-bold">Web</a>
+                                <!-- <p>@post.Content</p> -->
+                                @foreach(var tag in post.Tags)
+                                {
+                                    <a href="/posts/tag/@tag.Url" class="badge bg-@tag.Color bg-opacity-10 text-@tag.Color mb-2 fw-bold">@tag.Text</a>
+                                }
+                                
                             </div>
                         </div>
                     </div>               
@@ -33,6 +37,9 @@
         </div>
         <div class="col-lg-4">
 
+           <vc:tags-menu></vc:tags-menu>
+           <vc:new-posts></vc:new-posts>
+                                
         </div>
     </div>
 

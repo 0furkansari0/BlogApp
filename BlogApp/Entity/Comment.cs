@@ -3,7 +3,7 @@
 public class Comment
 {
     public int CommentId { get; set; }
-    public string? Test { get; set; }
+    public string? Text { get; set; }
 
     public DateTime PublishedOn { get; set; }
 
